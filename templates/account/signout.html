@@ -1,0 +1,19 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}LogOut{% endblock title %}
+
+{% block content %}
+
+<div class="card mark">
+  <div class="card-body">
+  	{% if msg%}
+    {{ msg | safe }}
+    {%endif%}
+  </div>
+</div>
+
+
+
+{% endblock content %}
+
+

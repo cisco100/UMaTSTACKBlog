@@ -1,0 +1,124 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}{{ post.title }}  {% endblock title %}
+
+{% block content %}
+<div class="container">
+
+<!-- /////////////////Details///////////// -->
+  <div class="row">
+    <div class="col offset-md-2">
+        {% if post.thumbnail %} 
+       <img src="{{post.thumbnail.url}}" style="border-radius: 8px; width:500px;height: 200px; object-fit: cover;">
+       {% endif%}
+    </div>
+    <div class="col order-3">
+     <h1 class="title">{{ post.title }}</h1>
+    <p>Author : {{post.author}}</p>
+    <p>Created {{ post.created_at|timesince }} ago</p>
+    <p>Updated On {{ post.updated|timesince }} ago</p>
+    <p>Category: <a href="{% url 'category_detail' post.category.slug %}" class="btn btn-warning m-1 p-1" style="font-size: 14px;">{{ post.category }}</a></p>
+
+
+    </div>
+    
+</div><hr/>
+
+<!-- ///////////////////////////////Body////////////////// -->
+<div class="columns">
+    <div class="column is-8 is-offset-2">
+    <div class="content is-medium">
+    <p style="padding-top:1%; padding-bottom:3%">{{ post.body|safe }}</p>
+
+
+
+
+
+    <!-- ////////////////////////forms -->
+    
+    
+
+        <!-- comments -->
+        <h2>{{ post.comments.count }} comments</h2>
+    
+    {% for comment in post.comments.all %}
+        <div class="card mb-3">
+        <div class="card-body">
+          
+            
+            <h5 class="card-title">Comment by: <small style="color:#00d1b2;">@{{comment.email|truncatechars:10}}</small></h5>
+            <h5 class="card-title">{{ comment.name }}</h5>
+            <p class="card-text">{{ comment.body|safe }}</p>
+            <p class="card-subtitle mb-2 text-muted">{{ comment.created_at|timesince }} ago</p>
+        </div>
+    </div>
+        {% endfor %}
+      
+
+      
+{% if user.is_authenticated %}
+    <h3>Leave a comment</h3>
+        
+    <form method="POST">
+            {%csrf_token%}
+        <div class="card  text-center">
+      <div class="card-header">
+        <h1 style="color:#00d1b2; margin: 0 auto; font-size: 40px;">Comment</h1>
+      </div>
+      <div class="card-body">
+        <!-- {% if msg %}
+          <p><span class="text-danger">{{ msg | safe }}</span></p>
+        {% endif %} -->
+
+        
+            {{form.media}}      
+            <label><h4 style="color: #00d1b2;">Title</h4></label><br>
+            {{form.name}}<br>
+            <label><h4 style="color: #00d1b2;">Email</h4></label><br>
+            {{form.email}}<br>
+            <label><h4 style="color: #00d1b2;">Message</h4></label><br>
+            {{form.body}}
+          </div>
+          <div class="card-footer text-muted">
+            
+      
+
+        <div class="field">
+
+
+       <div class="control">
+                <button class="button is-success">Post comment</button>
+            </div>
+        </div>
+    </div>
+    </form>
+    
+  {% else %}
+    <div class="alert alert-warning" role="alert">
+        Please <a href="{% url 'login' %}">log in</a> to leave a comment.
+    </div>
+{% endif %}
+      
+
+    
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+    
+</div>
+
+{% endblock content %}

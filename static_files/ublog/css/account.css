@@ -1,0 +1,66 @@
+.card-header,.card-footer,.card-body{
+  border: none;
+  background-color: white;
+}
+div{
+  color: grey;
+}
+.mark{
+  width: 40%;
+  background-color: white ;
+  margin: 0 auto;
+  margin-top: 100px;
+  
+}
+.textq{
+  text-decoration: none;
+  color: red;
+}
+input[type=text], select {
+  width: 70%;
+  height: 50px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #2b3553;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+input[type=password] {
+  width: 400px;
+  width: 70%;
+  height: 50px;
+  height: 50px;
+  padding: 12px 20px;
+  margin: 2px 0;
+  display: inline-block;
+  border: 1px solid #2b3553;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+
+input[type=email] {
+  width: 70%;
+  height: 50px;
+  padding: 12px 20px;
+  margin: 2px 0;
+  display: inline-block;
+  border: 1px solid #2b3553;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100%;
+  height: 50px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  background-color: #00d1b2;
+  border: none;
+  color: grey;
+  cursor: pointer;
+}

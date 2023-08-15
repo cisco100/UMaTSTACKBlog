@@ -1,0 +1,16 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Categories | {% endblock %}
+
+{% block content %}
+<div class="container"> 
+<div class="fs-1 mx-auto" style="width: 200px; padding-top:30px ; padding-right: 450px;"><b>Categories</b></div>
+<div class="card mark mx-auto">
+    {% for cat in categorys%}
+  <ul class="list-group">
+    <a href="#" >{{cat.title}}</a>
+ </ul>
+ {%endfor%}
+</div>
+</div>
+{% endblock %}

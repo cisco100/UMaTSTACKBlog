@@ -1,0 +1,63 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Search {% endblock %}
+
+{% block content %}
+   
+    
+
+
+
+<div class="container">
+    <div class="column is-8 is-offset-2">
+    <div class="content is-medium">
+        <h1>Search results for <span style="color: #00d1b2;"> "{{ query }}"</span></h1> 
+    </div>
+
+{% for post in posts %}
+
+<div class="card mb-3" style="max-width: 1000px; margin: 0 auto;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{post.thumbnail.url}}" class=" img-fluid rounded-start img-thumbnail" style="width:200px;height: 200px; object-fit: cover;">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h1 class="card-title" style="color: #00d1b2;"><b>{{post.title}}</b></h1>
+            <div class="card-title">
+                {{post.intro|safe}} 
+            
+
+             <figcaption class="blockquote-footer text-end"style="padding-top: 4%;">
+                    By <cite title="Source Title">{{post.author}}</cite>
+            </figcaption>
+               
+            </div>
+            <div class="d-flex justify-content-between align-items-center " style="padding-top: 6%;">
+                
+                <div class="btn-group" >
+                 <a href="{% url 'post_detail' post.category.slug post.slug %}"> <button type="button" style="color:#00d1b2"class="btn btn-sm btn-outline-secondary">View Post</button></a>
+                  <a href="{% url 'create-pdf' post.category.slug post.slug %}" download="UMaTSTACKBlog | {{post.title}}"> <button type="button" style="color:#00d1b2" class="btn btn-sm btn-outline-secondary">Download</button></a>
+                </div>
+                <small class="text" style="color:#00d1b2"> {{ post.created_at|timesince }} ago</small>
+    
+              </div>
+   
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    {% empty %}
+    <div class="card mark">
+      <div class="card-body card text-white bg-danger mb-3">
+        <p>No result found on "{{query}}"</p>
+      </div>
+    </div>
+
+
+{% endfor%}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'layout/base.html' %}
+{% block title %}SignUp{% endblock title %}
+
+{% block content %}
+
+<form method="POST">{%csrf_token%}
+<div  style= "width: 40%;" class="card mark text-center">
+  <div class="card-header">
+    <h1 style="color:#00d1b2; margin: 0 auto; font-size: 40px;">SignUp</h1>
+  </div>
+  <div class="card-body">
+    {% if msg %}
+        <p><span class="text-danger">{{ msg | safe }}</span></p>
+
+    {% endif %}
+
+    <label><h5>Username</h5></label><br>
+    {{form.username}}<br>
+    <span class="text-danger">{{ form.username.errors }}</span>
+    <label><h5>Email</h5></label><br>
+	{{form.email}}<br>
+	<span class="text-danger">{{ form.email.errors }}</span>
+	<label><h5>Password</h5></label><br>
+    {{form.password1}}<br>
+    <span class="text-danger">{{ form.password1.errors }}</span>
+    <label><h5>Confirm Password</h5></label><br>
+	{{form.password2}}
+	<span class="text-danger">{{ form.password2.errors }}</span>
+
+  </div>
+  <div class="card-footer text-muted">
+    <input type="submit" name="register">
+  </div>
+  Have an account? <a href="{%url 'login' %}" class="textq"><b style="color:green;">Login</b></a>
+</div>
+</form>
+
+{% endblock content %}
+
+
+
+

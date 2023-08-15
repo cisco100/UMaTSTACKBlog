@@ -1,0 +1,40 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}{{ category.title }} | {% endblock %}
+
+{% block content %}
+  
+
+<div class="container">
+    <div class="column is-8 is-offset-2">
+    <div class="content is-medium">
+
+{% for post in posts %}
+        <h1>{{post.category}}</h1> 
+    </div>
+{%endfor%}
+
+<div class="card">
+
+{% for post in posts %}
+                            
+  <h5 class="card-header" style="background-color: #00d1b2; height:50px;"></h5>
+  <div class="card-body">
+    <h5 class="card-title"><b>{{post.title}}</b></h5>
+    <a href="{% url 'post_detail' post.category.slug post.slug %}" class="link-secondary">
+    <p class="card-text ">{{post.intro|safe}}</p>
+    </a>
+    <h2 class="text-muted" style="padding-top:10px;">{{ post.created_at|timesince }} ago</h2>
+  </div>
+</div>
+{% empty %}
+    <div class="content">
+      <p>There is no posts in this category...</p>
+        </div>
+{% endfor %}
+
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,6 @@
+Package                         Version
+------------------------------- -----------
+Django                          4.1.6
+django-ckeditor                 6.5.1
+xhtml2pdf                       .....
+feedparser                      .....
